@@ -42,7 +42,7 @@ export default async function handler(req, res) {
     const { error: deleteUserError } = await supabaseAdmin
       .from('users')
       .delete()
-      .eq('id', userId);
+      .eq('user_id', userId);
 
     if (deleteUserError) {
       console.error('Error deleting from users table:', deleteUserError);
