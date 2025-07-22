@@ -37,18 +37,6 @@ export default async function handler(req, res) {
       console.error('Error deleting user from auth:', deleteAuthError);
       return res.status(400).json({ error: 'Failed to delete user from auth' });
     }
-
-    // Delete user record from public.users
-    const { error: deleteUserError } = await supabaseAdmin
-      .from('users')
-      .delete()
-      .eq('user_id', userId);
-
-    if (deleteUserError) {
-      console.error('Error deleting from users table:', deleteUserError);
-      return res.status(500).json({ error: 'Failed to delete user record' });
-    }
-
     res.json({ message: 'User deleted successfully' });
   } catch (err) {
     console.error('Error during deletion:', err);
